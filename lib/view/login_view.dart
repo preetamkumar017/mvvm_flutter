@@ -92,6 +92,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             RoundButton(
               title: "Login",
+              loading: authViewModel.loading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utils.flushBarErrorMessage("Plese enter email", context);

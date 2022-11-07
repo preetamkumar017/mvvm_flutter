@@ -14,6 +14,7 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
+    setLoading(true);
     _myRepo.loginApi(data).then((value) {
       setLoading(false);
       print(value.toString());

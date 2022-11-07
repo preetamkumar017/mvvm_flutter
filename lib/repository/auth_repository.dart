@@ -11,7 +11,7 @@ class AuthRepository {
           await _apiServices.getPostResponseApi(AppUrl.loginEndUrl, data);
       return response;
     } catch (e) {
-      throw e;
+      // throw e;
     }
   }
 
@@ -21,7 +21,7 @@ class AuthRepository {
           await _apiServices.getPostResponseApi(AppUrl.registerApiEndUrl, data);
       return response;
     } catch (e) {
-      throw e;
+      // throw e;
     }
   }
 }
