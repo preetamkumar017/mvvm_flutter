@@ -5,6 +5,8 @@ import 'package:flutter_application_1/res/components/roun_button.dart';
 import 'package:flutter_application_1/utils/routes/routes_name.dart';
 import 'package:flutter_application_1/utils/utils.dart';
 import 'package:flutter_application_1/view/home_screen.dart';
+import 'package:flutter_application_1/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -37,7 +39,9 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Login"),
@@ -97,6 +101,11 @@ class _LoginViewState extends State<LoginView> {
                   Utils.flushBarErrorMessage(
                       "please enter 6 digit password", context);
                 } else {
+                  Map data = {
+                    'email': _emailController.text.toString(),
+                    'password': _passwordController.text.toString(),
+                  };
+                  authViewModel.loginApi(data, context);
                   print("API Hit");
                 }
               },
