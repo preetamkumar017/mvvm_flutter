@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/res/components/roun_button.dart';
 import 'package:flutter_application_1/utils/routes/routes_name.dart';
 import 'package:flutter_application_1/utils/utils.dart';
-import 'package:flutter_application_1/view/home_screen.dart';
 import 'package:flutter_application_1/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
 
   TextEditingController _emailController = TextEditingController();
@@ -44,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Login"),
+          title: Text("Sign Up"),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -91,8 +88,8 @@ class _LoginViewState extends State<LoginView> {
               height: height * .1,
             ),
             RoundButton(
-              title: "Login",
-              loading: authViewModel.loading,
+              title: "Sign Up",
+              loading: authViewModel.signuploading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utils.flushBarErrorMessage("Plese enter email", context);
@@ -102,15 +99,11 @@ class _LoginViewState extends State<LoginView> {
                   Utils.flushBarErrorMessage(
                       "please enter 6 digit password", context);
                 } else {
-                  // Map data = {
-                  //   'email': _emailController.text.toString(),
-                  //   'password': _passwordController.text.toString(),
-                  // };
                   Map data = {
-                    'email': "eve.holt@reqres.in",
-                    'password': "cityslicka",
+                    'email': _emailController.text.toString(),
+                    'password': _passwordController.text.toString(),
                   };
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signupApi(data, context);
                   print("API Hit");
                 }
               },
@@ -119,9 +112,9 @@ class _LoginViewState extends State<LoginView> {
               height: height * .02,
             ),
             InkWell(
-                child: Text("Do not have account Sign Up"),
+                child: Text("Aready have account !!! Login "),
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, RoutesName.signup);
+                  Navigator.pushReplacementNamed(context, RoutesName.login);
                 }),
           ],
         )));
