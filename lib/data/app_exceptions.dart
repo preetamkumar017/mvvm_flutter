@@ -29,3 +29,8 @@ class InvalidInputException extends AppExceptions {
   InvalidInputException([String? message])
       : super(message, "Error During Communication");
 }
+
+class NoDataException extends AppExceptions {
+  NoDataException([String? message])
+      : super(message, "data not get in repositry");
+}
